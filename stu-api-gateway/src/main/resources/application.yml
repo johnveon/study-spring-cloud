@@ -1,0 +1,29 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.2.171:9083/eureka/
+server:
+  port: 9080
+spring:
+  application:
+    name: stu-api-gateway
+zuul:
+  routes:
+    user:
+      path: /user/**
+      serviceId: stu-user-edge-service
+#      url: http://localhost:8762  #这样写不会做负载均衡
+#      serviceId: hiapi-v1
+    course:
+      path: /course/**
+      serviceId: stu-course-edge-service
+
+#      stripPrefix: false  有该字段，请求的"feignapi"会被转发到
+#zuul.prefix: /v1  #加个前缀
+#ribbon:
+#  eureka:
+#    enabled: false
+#
+#hiapi-v1:
+#  ribbon:
+#    listOfServers: http://localhost:8762,http://localhost:8763

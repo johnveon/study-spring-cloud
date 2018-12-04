@@ -1,0 +1,31 @@
+---
+spring:
+   profiles: 9083-eureka-server
+server:
+   port: 9083
+eureka:
+   instance:
+      hostname: 192.168.2.171
+   client:
+      registerWithEureka: false
+      fetchRegistry: false
+      serviceUrl:
+         defaultZone: http://192.168.2.171:9083/eureka/
+#defaultZone: http://192.168.2.171:9084/eureka/      如果是高可用就彼此注册，写上对方的IP和端口，如果是一个人写自己
+
+
+---
+spring:
+   profiles: 9084-eureka-server
+server:
+   port: 9084
+eureka:
+   instance:
+      hostname: 192.168.2.171
+   client:
+      registerWithEureka: false
+      fetchRegistry: false
+      serviceUrl:
+          defaultZone: http://192.168.2.171:9083/eureka/
+
+

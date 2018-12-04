@@ -1,0 +1,34 @@
+# native
+
+#spring:
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:/shared
+#  profiles:
+#     active: native
+#  application:
+#    name: config-server
+
+server:
+  port: 9086
+
+# remote git
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@gitlab.my.com:fionchou/study-spring-cloud.git
+          searchPaths: stu-config-server/src/main/resources/app-config
+          username: fionchou
+          password: aA111111
+      label: master
+  application:
+    name: stu-config-server
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.2.171:9083/eureka/
