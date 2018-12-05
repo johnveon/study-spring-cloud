@@ -1,1 +1,11 @@
 boo: version 1
+
+hystrix:
+ metrics:
+  enabled: true
+ command:
+  default:
+   execution:
+    isolation:
+     thread:
+       timeoutInMilliseconds: 12000
