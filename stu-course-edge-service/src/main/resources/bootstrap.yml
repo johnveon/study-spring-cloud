@@ -20,7 +20,7 @@ spring:
     active: dev
 
 server:
-  port: 9082
+  port: 9087
 
 eureka:
   client:
