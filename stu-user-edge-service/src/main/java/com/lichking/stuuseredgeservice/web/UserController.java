@@ -4,6 +4,7 @@ import com.lichking.stucommon.dto.ResponeDTO;
 import com.lichking.stucourseedgeapi.course.CourseDTO;
 import com.lichking.stuuseredgeapi.user.UserDTO;
 import com.lichking.stuuseredgeservice.edge.StuCourseEdgeFeignService;
+import com.lichking.stuuseredgeservice.feign.SysConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,9 @@ public class UserController {
     @Autowired
     private StuCourseEdgeFeignService stuCourseEdgeFeignService;
 
+    @Autowired
+    private SysConfig sysConfig;
+
     @GetMapping(value = "/userById")
     @ResponseBody
     public ResponeDTO<UserDTO> userById(@RequestParam(value = "userId") Long  userId) {
@@ -36,7 +40,9 @@ public class UserController {
         ResponeDTO<CourseDTO> courseDTOResponse = stuCourseEdgeFeignService.courseListByUserId(userId);
         System.out.println("courseDTOResponse信息:" + courseDTOResponse.getData().toString());
 
-        return ResponeDTO.SUCCESS(userDTO);
+        ResponeDTO success = ResponeDTO.SUCCESS(userDTO);
+        success.setWhereFrom(sysConfig.getServerPort() + "_" + sysConfig.getBoo());
+        return success;
     }
 
     @GetMapping(value = "/userById4course")

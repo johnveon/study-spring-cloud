@@ -1,6 +1,6 @@
 spring:
   application:
-    name: stu-course-edge-service
+    name: stu-user-edge-service
   cloud:
     config:
 #      uri: http://localhost:8769
@@ -19,9 +19,9 @@ spring:
   profiles:
     active: dev
 
-#9087
+#9088
 server:
-  port: 9082
+  port: 9081
 
 eureka:
   client:

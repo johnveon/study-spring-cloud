@@ -1,9 +1,0 @@
-eureka:
-  client:
-    serviceUrl:
-      defaultZone : http://192.168.2.171:9083/eureka/
-server:
-  port: 9081
-spring:
-   application:
-     name: stu-user-edge-service
