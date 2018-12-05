@@ -20,10 +20,10 @@ spring:
     config:
       server:
         git:
-          uri: git@gitlab.my.com:fionchou/study-spring-cloud.git
+          uri: http://gitlab.my.com:9080/fionchou/study-spring-cloud.git
           searchPaths: stu-config-server/src/main/resources/app-config
           username: fionchou
-          password: aA111111
+          password: 11111111
       label: master
   application:
     name: stu-config-server
