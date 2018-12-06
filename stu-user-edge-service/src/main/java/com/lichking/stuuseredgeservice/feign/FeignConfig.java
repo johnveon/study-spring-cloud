@@ -12,7 +12,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Configuration
 public class FeignConfig {
-
+    /*
+     * 重试间隔为 100 毫秒，最大重试时间为 1 秒，重试次数为 5 次。
+     */
     @Bean
     public Retryer feignRetryer(){
         return new Retryer.Default(100, TimeUnit.SECONDS.toMillis(1), 5);

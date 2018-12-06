@@ -37,7 +37,7 @@ public class UserController {
         userDTO.setRole("ADMIN");
 
         //查询course
-        ResponeDTO<CourseDTO> courseDTOResponse = stuCourseEdgeFeignService.courseListByUserId(userId);
+        ResponeDTO<CourseDTO> courseDTOResponse = stuCourseEdgeFeignService.courseListByUserId4User(userId);
         System.out.println("courseDTOResponse信息:" + courseDTOResponse.getData().toString());
 
         ResponeDTO success = ResponeDTO.SUCCESS(userDTO);

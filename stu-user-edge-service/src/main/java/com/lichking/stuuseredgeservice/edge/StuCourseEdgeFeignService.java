@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author zhoufe
  * @date 2018/11/29 17:39
  */
-@FeignClient(value = "stu-course-edge-service", configuration = FeignConfig.class)
+@FeignClient(value = "stu-course-edge-service", configuration = FeignConfig.class, fallback = CourseEdgeHystrix.class)
 public interface StuCourseEdgeFeignService {
 
-    @GetMapping(value = "/course/courseListByUserId")
-    ResponeDTO<CourseDTO> courseListByUserId(@RequestParam(value = "userId") Long userId);
+    @GetMapping(value = "/course/courseListByUserId4User")
+    ResponeDTO<CourseDTO> courseListByUserId4User(@RequestParam(value = "userId") Long userId);
 }

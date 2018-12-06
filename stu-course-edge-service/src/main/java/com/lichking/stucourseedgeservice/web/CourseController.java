@@ -50,6 +50,25 @@ public class CourseController {
         return success;
     }
 
+    @GetMapping(value = "/courseListByUserId4User")
+    @ResponseBody
+    @ApiOperation(value = "获取课程（为了用户）", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="userId", value="用户ID", dataType = "Long", required=true, paramType="form"),
+    })
+    public ResponeDTO<CourseDTO> courseListByUserId4User(
+            @RequestParam(value = "userId") Long userId){
+
+        CourseDTO courseDTO = new CourseDTO();
+        courseDTO.setCourseId(1L);
+        courseDTO.setCourseName("xxx");
+        courseDTO.setDesc("xxxx");
+        ResponeDTO success = ResponeDTO.SUCCESS(courseDTO);
+
+        success.setWhereFrom("from port:" + sysConfig.getServerPort() + sysConfig.getFoo());
+        return success;
+    }
+
 
 
 }

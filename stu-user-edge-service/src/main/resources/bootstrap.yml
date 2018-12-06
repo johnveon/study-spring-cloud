@@ -33,3 +33,6 @@ management:
     enabled: false
 
 
+feign:
+   hystrix:
+     enabled: true
