@@ -1,5 +1,6 @@
 package com.lichking.stuuseredgeservice.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lichking.stucommon.dto.ResponeDTO;
 import com.lichking.stucourseedgeapi.course.CourseDTO;
 import com.lichking.stuuseredgeapi.user.UserDTO;
@@ -38,9 +39,14 @@ public class UserController {
 
         //查询course
         ResponeDTO<CourseDTO> courseDTOResponse = stuCourseEdgeFeignService.courseListByUserId4User(userId);
-        System.out.println("courseDTOResponse信息:" + courseDTOResponse.getData().toString());
+        System.out.println("courseDTOResponse信息:" + JSONObject.toJSONString(courseDTOResponse));
 
-        ResponeDTO success = ResponeDTO.SUCCESS(userDTO);
+        if (ResponeDTO.RESPONSE_FAIL_CODE.equals(courseDTOResponse.getCode())){
+            ResponeDTO fail = courseDTOResponse;
+            return fail;
+        }
+
+        ResponeDTO success = ResponeDTO.success(userDTO);
         success.setWhereFrom(sysConfig.getServerPort() + "_" + sysConfig.getBoo());
         return success;
     }
@@ -55,7 +61,7 @@ public class UserController {
         userDTO.setEmail("meimei@qq.com");
         userDTO.setRole("ADMIN");
 
-        return ResponeDTO.SUCCESS(userDTO);
+        return ResponeDTO.success(userDTO);
 
     }
 

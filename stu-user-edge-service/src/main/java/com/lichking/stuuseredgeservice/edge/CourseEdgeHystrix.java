@@ -14,6 +14,6 @@ public class CourseEdgeHystrix implements StuCourseEdgeFeignService{
     public ResponeDTO<CourseDTO> courseListByUserId4User(Long userId) {
         CourseDTO data = new CourseDTO();
         data.setCourseName("StuCourseEdgeFeignService 调用失败");
-        return ResponeDTO.FAILURE(data);
+        return ResponeDTO.failure("10001", "StuCourseEdgeFeignService 调用失败");
     }
 }

@@ -13,10 +13,17 @@ import java.util.Date;
 @ApiModel
 public class ResponeDTO<T> implements Serializable {
 
+    public static String RESPONSE_SUCCESS_CODE = "1";
+    public static String RESPONSE_FAIL_CODE = "0";
+
     @ApiModelProperty(value = "返回码")
     private String code;
-    @ApiModelProperty(value = "返回数据")
+    @ApiModelProperty(value = "业务码")
+    private String bizCode;
+    @ApiModelProperty(value = "数据")
     private T data;
+    @ApiModelProperty(value = "信息")
+    private String message;
 
     @ApiModelProperty(value = "响应时间")
     private Date respTime = new Date();
@@ -26,8 +33,10 @@ public class ResponeDTO<T> implements Serializable {
 
     public ResponeDTO(){}
 
-    public ResponeDTO(String code, T data){
+    public ResponeDTO(String code, String bizCode, String message, T data){
         this.code = code;
+        this.bizCode = bizCode;
+        this.message = message;
         this.data = data;
     }
 
@@ -47,12 +56,12 @@ public class ResponeDTO<T> implements Serializable {
         this.data = data;
     }
 
-    public static ResponeDTO SUCCESS(Object data) {
-        return new ResponeDTO("1", data);
+    public static ResponeDTO success(Object data) {
+        return new ResponeDTO(RESPONSE_SUCCESS_CODE, "10000", "成功", data);
     }
 
-    public static ResponeDTO FAILURE(Object data) {
-        return new ResponeDTO("0", data);
+    public static ResponeDTO failure(String bizCode, String message) {
+        return new ResponeDTO(RESPONSE_FAIL_CODE, bizCode, message, null);
     }
 
     public Date getRespTime() {
@@ -70,4 +79,22 @@ public class ResponeDTO<T> implements Serializable {
     public void setWhereFrom(String whereFrom) {
         this.whereFrom = whereFrom;
     }
+
+    public String getBizCode() {
+        return bizCode;
+    }
+
+    public void setBizCode(String bizCode) {
+        this.bizCode = bizCode;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+
 }

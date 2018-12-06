@@ -44,7 +44,7 @@ public class CourseController {
         courseDTO.setDesc("xxxx");
         ResponeDTO<UserDTO> userDTOResponeDTO = stuUserEdgeFeignService.userById4course(userId);
         courseDTO.setTeacher(userDTOResponeDTO.getData());
-        ResponeDTO success = ResponeDTO.SUCCESS(courseDTO);
+        ResponeDTO success = ResponeDTO.success(courseDTO);
 
         success.setWhereFrom("from port:" + sysConfig.getServerPort() + sysConfig.getFoo());
         return success;
@@ -63,7 +63,7 @@ public class CourseController {
         courseDTO.setCourseId(1L);
         courseDTO.setCourseName("xxx");
         courseDTO.setDesc("xxxx");
-        ResponeDTO success = ResponeDTO.SUCCESS(courseDTO);
+        ResponeDTO success = ResponeDTO.success(courseDTO);
 
         success.setWhereFrom("from port:" + sysConfig.getServerPort() + sysConfig.getFoo());
         return success;
