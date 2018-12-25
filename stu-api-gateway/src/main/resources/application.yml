@@ -8,6 +8,10 @@ spring:
   application:
     name: stu-api-gateway
 zuul:
+  retryable: true
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
   routes:
     user:
       path: /user/**
@@ -20,10 +24,24 @@ zuul:
 
 #      stripPrefix: false  有该字段，请求的"feignapi"会被转发到
 #zuul.prefix: /v1  #加个前缀
-#ribbon:
-#  eureka:
-#    enabled: false
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+#  MaxAutoRetries: 2
+#  MaxAutoRetriesNextServer: 0
 #
+
 #hiapi-v1:
 #  ribbon:
 #    listOfServers: http://localhost:8762,http://localhost:8763
+
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 60000
